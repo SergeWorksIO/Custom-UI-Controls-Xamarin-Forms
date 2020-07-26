@@ -3,6 +3,37 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DateEntryField.DateFieldControl">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!--Resource used to remove the default padding (20) of frame ui elements-->
+            <Thickness x:Key="DefaultFramePadding">0</Thickness>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
     <ContentView.Content>
+        <Frame x:Name="BorderContainer"
+               Padding="{StaticResource DefaultFramePadding}"
+               CornerRadius="{Binding BorderRadius}"
+               BackgroundColor="{Binding BorderColor}">
+            <Frame x:Name="InnerContainer"
+                   Margin="{Binding BorderThickness}"
+                   Padding="{StaticResource DefaultFramePadding}"
+                   CornerRadius="{Binding BorderRadius}"
+                   BackgroundColor="{Binding InnerColor}">
+                <Grid x:Name="ContentContainer">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Frame>
+        </Frame>
     </ContentView.Content>
 </ContentView>
