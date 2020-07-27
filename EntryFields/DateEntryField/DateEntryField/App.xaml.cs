@@ -10,7 +10,7 @@ namespace DateEntryField
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ControlTestPage();
         }
 
         protected override void OnStart()

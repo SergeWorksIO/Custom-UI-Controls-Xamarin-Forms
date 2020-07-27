@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace DateEntryField
+namespace CustomControl
 {
     public partial class DateFieldControl : ContentView
     {
@@ -30,19 +30,22 @@ namespace DateEntryField
             propertyName: nameof(BorderColor),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(Color),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: Color.FromHex("#C7C3C3"));
 
         public static BindableProperty BorderRadiusproperty = BindableProperty.Create(
             propertyName: nameof(BorderRadius),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(float),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: 6.0);
 
         public static BindableProperty BorderThicknessProperty = BindableProperty.Create(
             propertyName: nameof(BorderThickness),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(Thickness),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: 1.0);
 
         #endregion
 
@@ -57,7 +60,8 @@ namespace DateEntryField
             propertyName: nameof(InnerColor),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(Color),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: Color.FromHex("#FFFFFF"));
         #endregion
 
         #region Underline
@@ -71,7 +75,8 @@ namespace DateEntryField
             propertyName: nameof(UnderlineColor),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(Color),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: Color.FromHex("#202020"));
         #endregion
 
         #region Text
@@ -97,19 +102,22 @@ namespace DateEntryField
             propertyName: nameof(HeadingColor),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(Color),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: Color.FromHex("#202020"));
 
         public static BindableProperty TextColorProperty = BindableProperty.Create(
             propertyName: nameof(TextColor),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(Color),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: Color.FromHex("#202020"));
 
         public static BindableProperty PlaceHolderColorProperty = BindableProperty.Create(
             propertyName: nameof(PlaceHolderColor),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(Color),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: Color.FromHex("#979797"));
         #endregion
         #endregion
 
@@ -132,10 +140,22 @@ namespace DateEntryField
             set => SetValue(DateProperty, value);
         }
 
+        public string Heading
+        {
+            get => (string)GetValue(HeadingProperty);
+            set => SetValue(HeadingProperty, value);
+        }
+
         public string Entry
         {
             get => (string)GetValue(EntryProperty);
             set => SetValue(EntryProperty, value);
+        }
+
+        public string PlaceHolder
+        {
+            get => (string)GetValue(PlaceHolderProperty);
+            set => SetValue(PlaceHolderProperty, value);
         }
 
         public bool DateWasSelected
@@ -160,13 +180,15 @@ namespace DateEntryField
             propertyName: nameof(MinDate),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(DateTime),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: DateTime.Now.Date.AddYears(-100));
 
         public static BindableProperty MaxDateProperty = BindableProperty.Create(
             propertyName: nameof(MaxDate),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(DateTime),
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: DateTime.Now.Date);
 
         public static BindableProperty DateProperty = BindableProperty.Create(
             propertyName: nameof(Date),
@@ -174,29 +196,46 @@ namespace DateEntryField
             returnType: typeof(DateTime),
             defaultBindingMode: BindingMode.TwoWay);
 
+        public static BindableProperty HeadingProperty = BindableProperty.Create(
+           propertyName: nameof(Heading),
+           declaringType: typeof(DateFieldControl),
+           returnType: typeof(string),
+           defaultBindingMode: BindingMode.TwoWay,
+           defaultValue: "Heading");
+
         public static BindableProperty EntryProperty = BindableProperty.Create(
             propertyName: nameof(EntryProperty),
             declaringType: typeof(DateFieldControl),
             returnType: typeof(string),
             defaultBindingMode: BindingMode.TwoWay);
 
+        public static BindableProperty PlaceHolderProperty = BindableProperty.Create(
+            propertyName: nameof(PlaceHolder),
+            declaringType: typeof(DateFieldControl),
+            returnType: typeof(string),
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: "Place Holder");
+
         public static BindableProperty DateWasSelectedProperty = BindableProperty.Create(
            propertyName: nameof(DateWasSelected),
            declaringType: typeof(DateFieldControl),
            returnType: typeof(bool),
-           defaultBindingMode: BindingMode.TwoWay);
+           defaultBindingMode: BindingMode.TwoWay,
+           defaultValue: false);
 
         public static BindableProperty ClearingEnabledProperty = BindableProperty.Create(
            propertyName: nameof(ClearingEnabled),
            declaringType: typeof(DateFieldControl),
            returnType: typeof(bool),
-           defaultBindingMode: BindingMode.TwoWay);
+           defaultBindingMode: BindingMode.TwoWay,
+           defaultValue: true);
 
         public static BindableProperty UnderlinEnabledProeprty = BindableProperty.Create(
            propertyName: nameof(UnderlineEnabled),
            declaringType: typeof(DateFieldControl),
            returnType: typeof(bool),
-           defaultBindingMode: BindingMode.TwoWay);
+           defaultBindingMode: BindingMode.TwoWay,
+           defaultValue: true);
         #endregion
 
         public DateFieldControl()
